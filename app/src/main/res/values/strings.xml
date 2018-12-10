@@ -2,7 +2,7 @@
     <string name="app_name">JP4application</string>
     <string name="first_button">first</string>
     <string translatable="false" name="login">Login</string>
-    <string name="register">Register</string>
+    <string name="register">Sign up</string>
     <string name="hint_email">Insert your email</string>
     <string name="hint_password">Insert your password</string>
     <string name="login_error">Login failed</string>
