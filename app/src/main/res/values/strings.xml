@@ -5,11 +5,11 @@
     <string name="register">Sign up</string>
     <string name="hint_email">Insert your email</string>
     <string name="hint_password">Insert your password</string>
+    <string name="hint_phone">Insert your phone Number</string>
     <string name="login_error">Login failed</string>
-    <string name="login_success">Logged In succesfully</string>
+    <string name="login_success">Logged In successfully</string>
     <string name="password_error">La password è errata.</string>
     <string name="email_error">L\'email è errata.</string>
-    <string name="hint_phone">Insert your phone number</string>
     <string name="welcome">Welcome</string>
 
 </resources>

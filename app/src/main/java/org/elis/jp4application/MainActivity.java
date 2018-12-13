@@ -13,6 +13,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private static final String TAG = "MainActivity";
     private static final int PASSWORD_LENGTH = 6;
+    private static final String errore = "errore";
 
     EditText emailET;
     EditText passwordET;
@@ -53,8 +54,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     }
 
-
-
     private boolean isValidEmail(){
         String email = emailET.getText().toString();
         return android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches();
@@ -83,6 +82,35 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 .show();
         Log.i(TAG,getString(R.string.login_success));
     }
+
+
+    @Override
+    public void onClick(View view) {
+        if(view.getId() == R.id.login_btn){
+            if(!isValidEmail()){
+                showErrorMessage(getString(R.string.email_error));
+                return;
+            }
+            if(!isValidPassword()){
+                showErrorMessage(getString(R.string.password_error));
+                return;
+            }
+
+            showSuccessMessage();
+            Intent i = new Intent(this,WelcomeActivity.class);
+            String mail = emailET.getText().toString();
+            i.putExtra(WELCOME,mail);
+            startActivity(i);
+
+
+        }else if(view.getId() == R.id.register_btn){
+
+            Intent intent = new Intent(this, RegisterActivity.class);
+            startActivity(intent);
+        }
+
+    }
+
 
 
     @Override
@@ -121,41 +149,4 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     }
 
-    @Override
-    public void onClick(View view) {
-        if(view.getId() == R.id.login_btn){
-            /*
-            if(isValidPassword() && isValidEmail()){
-                showSuccessMessage();
-            }else if (isValidPassword() && !isValidEmail()) {
-                showErrorEmail();
-            }else if (!isValidPassword() && isValidEmail()) {
-                showErrorPassword();
-            }else {
-                showErrorMessage();
-            }*/
-
-            if(!isValidEmail()){
-                showErrorMessage(getString(R.string.email_error));
-                return;
-            }
-            if(!isValidPassword()){
-                showErrorMessage(getString(R.string.password_error));
-                return;
-            }
-
-            showSuccessMessage();
-            Intent i = new Intent(this,WelcomeActivity.class);
-            String mail = emailET.getText().toString();
-            i.putExtra(WELCOME,mail);
-            startActivity(i);
-
-
-        }else if(view.getId() == R.id.register_btn){
-
-            Intent i = new Intent(MainActivity.this,RegisterActivity.class);
-            startActivity(i);
-        }
-
-    }
 }

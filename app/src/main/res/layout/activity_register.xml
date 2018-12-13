@@ -39,6 +39,7 @@
             android:id="@+id/register_btn"
             android:text="@string/register"/>
 
+
     </LinearLayout>
 
 
