@@ -1,12 +1,17 @@
 package org.elis.jp4application;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.Switch;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
@@ -17,6 +22,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     EditText emailET;
     EditText passwordET;
+
+    SharedPreferences sharedPreferences;
+    SharedPreferences.Editor editor;
+
+    Switch darkModeSwitch;
+
+    LinearLayout fatherLL;
 
     Button loginBtn;
     Button registerBtn;
@@ -35,7 +47,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         loginBtn = findViewById(R.id.login_btn);
         registerBtn = findViewById(R.id.register_btn);
 
-        registerBtn.setVisibility(View.VISIBLE);
+        darkModeSwitch = findViewById(R.id.dark_mode_switch);
+        fatherLL = findViewById(R.id.layout_father);
+
+        sharedPreferences = getPreferences(Context.MODE_PRIVATE);
+        editor = sharedPreferences.edit();
+
+
+        darkModeSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                changeColor(isChecked);
+              }
+            });
+
+                registerBtn.setVisibility(View.VISIBLE);
 
         registerBtn.setOnClickListener(this);
 
@@ -52,6 +78,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         Log.i(TAG, "activity created");
 
+        darkModeSwitch.setChecked(getColorValueInMemory());
+
+    }
+
+    private void changeColor (boolean isChecked){
+        fatherLL.setBackgroundColor(getResources().getColor(isChecked? R.color.darkBackground : R.color.lightBackground));
+        setColorValueInMemory(isChecked);
+    }
+
+    private void setColorValueInMemory(boolean value){
+        editor.putBoolean("BackGroundColor", value);
+        editor.commit();
+    }
+
+    private boolean getColorValueInMemory(){
+        return sharedPreferences.getBoolean("BackGroundColor", false);
     }
 
     private boolean isValidEmail(){

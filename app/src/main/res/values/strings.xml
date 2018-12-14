@@ -11,5 +11,6 @@
     <string name="password_error">La password è errata.</string>
     <string name="email_error">L\'email è errata.</string>
     <string name="welcome">Welcome</string>
+    <string name="dark_mode">Dark Mode</string>
 
 </resources>
