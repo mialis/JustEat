@@ -33,6 +33,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Button loginBtn;
     Button registerBtn;
     public static final String WELCOME ="WELCOME";
+    public static final String EMAIL ="";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -139,10 +140,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
 
             showSuccessMessage();
-            Intent i = new Intent(this,WelcomeActivity.class);
-            String mail = emailET.getText().toString();
-            i.putExtra(WELCOME,mail);
-            startActivity(i);
+            Intent logIntent = new Intent(this,WelcomeActivity.class);
+            String email = emailET.getText().toString();
+            logIntent.putExtra(EMAIL, email);
+            startActivity(logIntent);
 
 
         }else if(view.getId() == R.id.register_btn){

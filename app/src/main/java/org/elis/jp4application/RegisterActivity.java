@@ -30,6 +30,8 @@ public class RegisterActivity extends AppCompatActivity  {
         passwordET = findViewById(R.id.password_et);
         phoneET = findViewById(R.id.phone_et);
 
+        registerBtn = findViewById(R.id.register_btn);
+
         TextWatcher textWatcher = new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
